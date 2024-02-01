@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:ecotown/ui/common/app_colors.dart';
@@ -79,6 +81,48 @@ class HomeView extends StackedView<HomeViewModel> {
             child: Text('bird'),
           )),
         ],
+      ),
+    );
+  }
+
+  Widget _buildBottomGround(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/grass_ground.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGrass(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/grass.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBird(BuildContext context, HomeViewModel viewModel) {
+    log('moved: ${viewModel.birdX}, ${viewModel.birdY}');
+
+    return Align(
+      alignment: Alignment(viewModel.birdX, viewModel.birdY),
+      child: Container(
+        height: 30,
+        width: 30,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bird_idle.png'),
+            fit: BoxFit.fill,
+          ),
+        ),
       ),
     );
   }
