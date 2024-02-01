@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ecotown/ui/views/widgets/background.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:ecotown/ui/common/app_colors.dart';
@@ -22,7 +23,7 @@ class HomeView extends StackedView<HomeViewModel> {
           // game map
           Expanded(
             flex: 10,
-            child: _buildMap(context, viewModel),
+            child: Background(child: _buildMap(context, viewModel)),
           ),
           // controller
           Expanded(
@@ -59,19 +60,21 @@ class HomeView extends StackedView<HomeViewModel> {
               ),
               children: List.generate(150, (index) {
                 if (index >= 140) {
-                  return Container(
-                    child: Text('grass with soil'),
-                  );
+                  return _buildBottomGround(context);
                 }
 
                 if (index < 140) {
-                  return Container(
-                    child: Text('grass'),
-                  );
+                  return _buildGrass(context);
                 }
 
                 return Container(
-                  child: Text('$index'),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                  ),
+                  child: Text(
+                    '$index',
+                  ),
                 );
               }),
             ),
