@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:stacked/stacked.dart';
 
@@ -8,6 +9,14 @@ class HomeViewModel extends BaseViewModel {
   double birdY = 0;
 
   Timer? timer;
+
+  void hitA() {
+    log('hit A');
+  }
+
+  void hitB() {
+    log('hit B');
+  }
 
   void moveRight({bool? once}) {
     if (once != null) {

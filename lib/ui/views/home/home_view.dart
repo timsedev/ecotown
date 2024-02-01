@@ -28,8 +28,12 @@ class HomeView extends StackedView<HomeViewModel> {
           // controller
           Expanded(
             flex: 3,
-            child: Container(
-              color: Colors.blue,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildDPad(context, viewModel),
+                _buildActionButtons(context, viewModel),
+              ],
             ),
           ),
         ],
@@ -180,6 +184,56 @@ class HomeView extends StackedView<HomeViewModel> {
           size: 30,
           color: Colors.black,
         ),
+      ),
+    );
+  }
+
+  Widget _buildActionButtons(BuildContext context, HomeViewModel viewModel) {
+    return Container(
+      margin: const EdgeInsets.only(
+        right: 40,
+        bottom: 20,
+      ),
+      color: Colors.transparent,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          GestureDetector(
+            onTap: viewModel.hitA,
+            child: Container(
+              height: 60,
+              width: 60,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Text(
+                'A',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          GestureDetector(
+            onTap: viewModel.hitB,
+            child: Container(
+              height: 60,
+              width: 60,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Text(
+                'B',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
