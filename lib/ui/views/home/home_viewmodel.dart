@@ -1,17 +1,29 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:ecotown/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
+  final _dialogService = locator<DialogService>();
+
   // coordinates of the bird (player)
   double birdX = 0;
   double birdY = 0;
 
   Timer? timer;
 
+  // hit A will open menu
+  // menu will have different options which depend on the current location of the player
   void hitA() {
     log('hit A');
+
+    // open menu dialog
+    _dialogService.showDialog(
+      title: 'Menu',
+      description: 'Test',
+    );
   }
 
   void hitB() {
@@ -24,6 +36,7 @@ class HomeViewModel extends BaseViewModel {
         birdX += 0.05;
         rebuildUi();
       }
+      checkBoundaries();
       return;
     }
 
@@ -31,6 +44,7 @@ class HomeViewModel extends BaseViewModel {
       birdX += 0.05;
       rebuildUi();
     });
+    checkBoundaries();
   }
 
   void moveLeft({bool? once}) {
@@ -39,6 +53,7 @@ class HomeViewModel extends BaseViewModel {
         birdX -= 0.05;
         rebuildUi();
       }
+      checkBoundaries();
       return;
     }
 
@@ -46,6 +61,7 @@ class HomeViewModel extends BaseViewModel {
       birdX -= 0.05;
       rebuildUi();
     });
+    checkBoundaries();
   }
 
   void moveDown({bool? once}) {
@@ -54,6 +70,7 @@ class HomeViewModel extends BaseViewModel {
         birdY += 0.05;
         rebuildUi();
       }
+      checkBoundaries();
       return;
     }
 
@@ -61,6 +78,7 @@ class HomeViewModel extends BaseViewModel {
       birdY += 0.05;
       rebuildUi();
     });
+    checkBoundaries();
   }
 
   void moveUp({bool? once}) {
@@ -69,6 +87,7 @@ class HomeViewModel extends BaseViewModel {
         birdY -= 0.05;
         rebuildUi();
       }
+      checkBoundaries();
       return;
     }
 
@@ -76,9 +95,30 @@ class HomeViewModel extends BaseViewModel {
       birdY -= 0.05;
       rebuildUi();
     });
+    checkBoundaries();
   }
 
   void cancelTimer() {
     timer?.cancel();
+  }
+
+  void checkBoundaries() {
+    if (birdX > 1) {
+      birdX = 1;
+    }
+
+    if (birdX < -1) {
+      birdX = -1;
+    }
+
+    if (birdY > 1) {
+      birdY = 1;
+    }
+
+    if (birdY < -1) {
+      birdY = -1;
+    }
+
+    rebuildUi();
   }
 }
