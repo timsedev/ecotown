@@ -20,9 +20,7 @@ class HomeView extends StackedView<HomeViewModel> {
           // game map
           Expanded(
             flex: 10,
-            child: Container(
-              color: Colors.green,
-            ),
+            child: _buildMap(context, viewModel),
           ),
           // controller
           Expanded(
@@ -41,4 +39,47 @@ class HomeView extends StackedView<HomeViewModel> {
     BuildContext context,
   ) =>
       HomeViewModel();
+
+  Widget _buildMap(BuildContext context, HomeViewModel viewModel) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.brown[900],
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: GridView(
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(10),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 10,
+              ),
+              children: List.generate(150, (index) {
+                if (index >= 140) {
+                  return Container(
+                    child: Text('grass with soil'),
+                  );
+                }
+
+                if (index < 140) {
+                  return Container(
+                    child: Text('grass'),
+                  );
+                }
+
+                return Container(
+                  child: Text('$index'),
+                );
+              }),
+            ),
+          ),
+          Positioned(
+              child: Container(
+            child: Text('bird'),
+          )),
+        ],
+      ),
+    );
+  }
 }
