@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:ecotown/ui/views/widgets/background.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:ecotown/ui/common/app_colors.dart';
-import 'package:ecotown/ui/common/ui_helpers.dart';
 
 import 'home_viewmodel.dart';
 
@@ -62,25 +60,17 @@ class HomeView extends StackedView<HomeViewModel> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 10,
               ),
-              children: List.generate(150, (index) {
-                if (index >= 140) {
-                  return _buildBottomGround(context);
-                }
-
-                if (index < 140) {
-                  return _buildGrass(context);
-                }
-
-                return Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                  ),
-                  child: Text(
-                    '$index',
-                  ),
-                );
-              }),
+              children: viewModel.mapTileData?.map((tile) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(tile.imagePath!),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    );
+                  }).toList() ??
+                  [],
             ),
           ),
           Positioned(

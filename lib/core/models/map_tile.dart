@@ -13,15 +13,29 @@ class MapTile {
   String _getImagePath() {
     switch (type) {
       case MapTileType.grass:
-        return 'assets/grass.png';
+        return 'assets/images/grass.png';
       case MapTileType.ground:
-        return 'assets/grass_ground.png';
+        return 'assets/images/grass_ground.png';
       case MapTileType.biofuelPlant:
-        return 'assets/biofuel_plant.png';
+        return 'assets/images/biofuel_plant.png';
       case MapTileType.solarPanel:
-        return 'assets/solar_panel.png';
+        return 'assets/images/solar_panel.png';
       case MapTileType.timberMill:
-        return 'assets/timber_mill.png';
+        return 'assets/images/timber_mill.png';
     }
+  }
+
+  static List<MapTile> defaultMapTiles() {
+    return List.generate(150, (index) {
+      if (index >= 140) {
+        return MapTile(type: MapTileType.ground);
+      }
+
+      if (index < 140) {
+        return MapTile(type: MapTileType.grass);
+      }
+
+      return MapTile(type: MapTileType.grass);
+    });
   }
 }
