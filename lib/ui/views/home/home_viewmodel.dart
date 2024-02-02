@@ -36,6 +36,7 @@ class HomeViewModel extends BaseViewModel {
     _dialogService.showCustomDialog(
       variant: DialogType.menu,
       data: biofuelData,
+      barrierDismissible: true,
     );
   }
 
