@@ -3,6 +3,7 @@ import 'package:ecotown/app/app.bottomsheets.dart';
 import 'package:ecotown/app/app.dialogs.dart';
 import 'package:ecotown/app/app.locator.dart';
 import 'package:ecotown/app/app.router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
@@ -25,6 +26,11 @@ class MainApp extends StatelessWidget {
       navigatorObservers: [
         StackedService.routeObserver,
       ],
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'Yoster',
+      ),
     );
   }
 }
