@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:ecotown/app/app.dialogs.dart';
 import 'package:ecotown/app/app.locator.dart';
+import 'package:ecotown/core/models/building.dart';
 import 'package:ecotown/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -16,7 +17,11 @@ class HomeViewModel extends BaseViewModel {
 
   Timer? timer;
 
-  HomeViewModel();
+  List<Building?>? buildings;
+
+  HomeViewModel() {
+    buildings = buildingsMap;
+  }
 
   // hit A will open menu
   // menu will have different options which depend on the current location of the player
@@ -24,6 +29,7 @@ class HomeViewModel extends BaseViewModel {
     log('hit A');
 
     // check player location
+    // go through buildingsMap to check
     // if player is at biofuel plant
 
     // open menu dialog

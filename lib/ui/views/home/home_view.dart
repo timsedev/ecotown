@@ -1,6 +1,7 @@
 import 'dart:developer';
 
-import 'package:ecotown/core/models/ground.dart';
+import 'package:ecotown/core/models/building.dart';
+import 'package:ecotown/ui/views/widgets/ground.dart';
 import 'package:ecotown/ui/views/widgets/background.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -54,22 +55,49 @@ class HomeView extends StackedView<HomeViewModel> {
       ),
       child: Stack(
         children: [
-          Positioned.fill(
+          const Positioned.fill(
             child: Ground(),
+          ),
+          // build buildings
+          Positioned.fill(
+            child: _buildBuildings(context, viewModel),
           ),
           Positioned(
             child: _buildBird(context, viewModel),
           ),
-          // build buildings
-          // ..._buildBuildings(context, viewModel),
         ],
       ),
     );
   }
 
-  // List<Widget> _buildBuildings(BuildContext context, HomeViewModel viewModel) {
+  Widget _buildBuildings(BuildContext context, HomeViewModel viewModel) {
+    return GridView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(10),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 5,
+      ),
+      itemBuilder: (context, index) {
+        final building = viewModel.buildings![index];
+        if (building == null) return Container();
+        return _buildSingleBuilding(building);
+      },
+      itemCount: viewModel.buildings!.length,
+    );
+  }
 
-  // }
+  Widget _buildSingleBuilding(Building building) {
+    return Container(
+      height: 50,
+      width: 50,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(building.image),
+          fit: BoxFit.fill,
+        ),
+      ),
+    );
+  }
 
   Widget _buildBird(BuildContext context, HomeViewModel viewModel) {
     log('moved: ${viewModel.birdX}, ${viewModel.birdY}');
