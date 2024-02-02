@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ecotown/core/models/ground.dart';
 import 'package:ecotown/ui/views/widgets/background.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -54,56 +55,21 @@ class HomeView extends StackedView<HomeViewModel> {
       child: Stack(
         children: [
           Positioned.fill(
-            child: GridView(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 10,
-              ),
-              children: viewModel.mapTileData?.map((tile) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(tile.imagePath!),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  }).toList() ??
-                  [],
-            ),
+            child: Ground(),
           ),
           Positioned(
             child: _buildBird(context, viewModel),
           ),
+          // build buildings
+          // ..._buildBuildings(context, viewModel),
         ],
       ),
     );
   }
 
-  Widget _buildBottomGround(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/grass_ground.png'),
-          fit: BoxFit.fill,
-        ),
-      ),
-    );
-  }
+  // List<Widget> _buildBuildings(BuildContext context, HomeViewModel viewModel) {
 
-  Widget _buildGrass(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/grass.png'),
-          fit: BoxFit.fill,
-        ),
-      ),
-    );
-  }
+  // }
 
   Widget _buildBird(BuildContext context, HomeViewModel viewModel) {
     log('moved: ${viewModel.birdX}, ${viewModel.birdY}');
