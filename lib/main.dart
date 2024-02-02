@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: 'Yoster',
+        fontFamily: GoogleFonts.poppins().fontFamily,
       ),
     );
   }
