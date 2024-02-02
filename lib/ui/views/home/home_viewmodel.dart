@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:ecotown/app/app.dialogs.dart';
 import 'package:ecotown/app/app.locator.dart';
+import 'package:ecotown/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -20,15 +21,12 @@ class HomeViewModel extends BaseViewModel {
   void hitA() {
     log('hit A');
 
+    // check player location
+
     // open menu dialog
     _dialogService.showCustomDialog(
       variant: DialogType.menu,
-      data: {
-        'name': 'Biofuel Plant',
-        'description':
-            'Biofuel is a sustainable alternative to fossil fuels. It is produced from organic materials such as plants and animals. It is a renewable source of energy and helps reduce greenhouse gas emissions. Biofuel can be used in vehicles, planes, and even power plants. It is a great way to reduce our carbon footprint.',
-        'image-path': 'assets/images/biofuel_plant.png',
-      },
+      data: biofuelData,
     );
   }
 
