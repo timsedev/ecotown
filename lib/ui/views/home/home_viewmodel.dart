@@ -11,6 +11,8 @@ import 'package:stacked_services/stacked_services.dart';
 class HomeViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
 
+  bool isBuilding = false;
+
   // coordinates of the bird (player)
   double birdX = 0;
   double birdY = 0;
@@ -79,10 +81,21 @@ class HomeViewModel extends BaseViewModel {
     );
   }
 
-  void openBuildBuildingDialog() {
-    _dialogService.showCustomDialog(
+  Future<void> openBuildBuildingDialog() async {
+    final DialogResponse? response = await _dialogService.showCustomDialog(
       variant: DialogType.build,
       barrierDismissible: true,
     );
+
+    if (response == null) {
+      return;
+    }
+
+    isBuilding = true;
+    rebuildUi();
+
+    final data = response.data;
+    final build = data['build'] as String;
+    d.log('building: $build');
   }
 }

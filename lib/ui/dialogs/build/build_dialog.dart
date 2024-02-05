@@ -1,3 +1,4 @@
+import 'package:ecotown/ui/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:ecotown/ui/common/app_colors.dart';
 import 'package:ecotown/ui/common/ui_helpers.dart';
@@ -26,75 +27,125 @@ class BuildDialog extends StackedView<BuildDialogModel> {
   ) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        request.title ?? 'Hello Stacked Dialog!!',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      if (request.description != null) ...[
-                        verticalSpaceTiny,
-                        Text(
-                          request.description!,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: kcMediumGrey,
-                          ),
-                          maxLines: 3,
-                          softWrap: true,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-                Container(
-                  width: _graphicSize,
-                  height: _graphicSize,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFF6E7B0),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(_graphicSize / 2),
-                    ),
-                  ),
-                  alignment: Alignment.center,
-                  child: const Text('⭐️', style: TextStyle(fontSize: 30)),
-                )
-              ],
+            Text(
+              'Build Something New!',
+              style: TextStyle(
+                color: Colors.green[900],
+                fontSize: 24,
+                fontFamily: 'Yoster',
+              ),
             ),
             verticalSpaceMedium,
-            GestureDetector(
-              onTap: () => completer(DialogResponse(confirmed: true)),
-              child: Container(
-                height: 50,
-                width: double.infinity,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Text(
-                  'Got it',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+            SizedBox(
+              height: 100,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: viewModel.toggleBiofuelDescription,
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: viewModel.currentlySelectingBiofuel()
+                                ? Colors.green[900]!
+                                : Colors.transparent,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.green[100],
+                        ),
+                        child: Image.asset(biofuelData['image-path'] as String),
+                      ),
+                    ),
                   ),
-                ),
+                  horizontalSpaceSmall,
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: viewModel.toggleSolarPanelDescription,
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.green[100],
+                          border: Border.all(
+                            color: viewModel.currentlySelectingSolarPanel()
+                                ? Colors.green[900]!
+                                : Colors.transparent,
+                            width: 2,
+                          ),
+                        ),
+                        child:
+                            Image.asset(solarPanelData['image-path'] as String),
+                      ),
+                    ),
+                  ),
+                  horizontalSpaceSmall,
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: viewModel.toggleTimberMillDescription,
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.green[100],
+                          border: Border.all(
+                            color: viewModel.currentlySelectingTimberMill()
+                                ? Colors.green[900]!
+                                : Colors.transparent,
+                            width: 2,
+                          ),
+                        ),
+                        child:
+                            Image.asset(timberMillData['image-path'] as String),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              height: viewModel.showDescription ? 100 : 0,
+              margin: viewModel.showDescription
+                  ? const EdgeInsets.only(top: 10)
+                  : EdgeInsets.zero,
+              child: Text(viewModel.description),
+            ),
+            verticalSpaceSmall,
+            SizedBox(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      viewModel.buildBuilding(completer);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.green[900],
+                      ),
+                      child: Text(
+                        'Build',
+                        style: TextStyle(
+                          color: Colors.green[100],
+                          fontSize: 20,
+                          fontFamily: 'Yoster',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -76,7 +76,19 @@ class HomeView extends StackedView<HomeViewModel> {
       ),
       itemBuilder: (context, index) {
         final building = viewModel.buildingsMap![index];
-        if (building == null) return Container();
+        if (building == null) {
+          if (viewModel.isBuilding) {
+            return GestureDetector(
+              onTap: () {},
+              child: Container(
+                height: 50,
+                width: 50,
+                child: Icon(Icons.add),
+              ),
+            );
+          }
+          return Container();
+        }
         return _buildSingleBuilding(building, viewModel);
       },
       itemCount: viewModel.buildingsMap!.length,
