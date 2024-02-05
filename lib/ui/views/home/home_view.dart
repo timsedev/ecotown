@@ -36,6 +36,12 @@ class HomeView extends StackedView<HomeViewModel> {
   ) =>
       HomeViewModel();
 
+  @override
+  void onDispose(HomeViewModel viewModel) {
+    viewModel.cancelTimer();
+    super.onDispose(viewModel);
+  }
+
   Widget _buildMap(BuildContext context, HomeViewModel viewModel) {
     return Container(
       decoration: BoxDecoration(
@@ -69,20 +75,23 @@ class HomeView extends StackedView<HomeViewModel> {
       itemBuilder: (context, index) {
         final building = viewModel.buildingsMap![index];
         if (building == null) return Container();
-        return _buildSingleBuilding(building);
+        return _buildSingleBuilding(building, viewModel);
       },
       itemCount: viewModel.buildingsMap!.length,
     );
   }
 
-  Widget _buildSingleBuilding(Building building) {
-    return Container(
-      height: 50,
-      width: 50,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(building.image),
-          fit: BoxFit.fill,
+  Widget _buildSingleBuilding(Building building, HomeViewModel viewModel) {
+    return GestureDetector(
+      onTap: () => viewModel.openBuildingDialog(building),
+      child: Container(
+        height: 50,
+        width: 50,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(building.image),
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );
