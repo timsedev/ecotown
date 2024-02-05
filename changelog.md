@@ -1,0 +1,2 @@
+After commit 878de3c526f165b8e18c2e845890483d1cf30069:
+We are changing from a pokemon-style-ish game, where you move the player with the dpad and hit a & b for actions, to modern touch to act kind of game.
