@@ -89,21 +89,25 @@ class _CustomFloatingActionButtonState extends State<CustomFloatingActionButton>
   }
 
   Widget _buildTapToCloseFab() {
-    return SizedBox(
-      width: 56,
-      height: 56,
-      child: Center(
-        child: Material(
-          shape: const CircleBorder(),
-          clipBehavior: Clip.antiAlias,
-          elevation: 4,
-          child: InkWell(
-            onTap: _toggle,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Icon(
-                Icons.close,
-                color: Theme.of(context).primaryColor,
+    return Opacity(
+      opacity: _open ? 1.0 : 0.0,
+      child: SizedBox(
+        width: 75,
+        height: 75,
+        child: Center(
+          child: Material(
+            color: Colors.cyan[100],
+            shape: const CircleBorder(),
+            clipBehavior: Clip.antiAlias,
+            elevation: 4,
+            child: InkWell(
+              onTap: _toggle,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Icon(
+                  Icons.close,
+                  color: Colors.cyan[500],
+                ),
               ),
             ),
           ),
@@ -128,9 +132,13 @@ class _CustomFloatingActionButtonState extends State<CustomFloatingActionButton>
           opacity: _open ? 0.0 : 1.0,
           curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
           duration: const Duration(milliseconds: 250),
-          child: FloatingActionButton(
-            onPressed: _toggle,
-            child: const Icon(Icons.create),
+          child: GestureDetector(
+            onTap: _toggle,
+            child: SizedBox(
+              height: 75,
+              width: 75,
+              child: Image.asset('assets/images/bird_idle.png'),
+            ),
           ),
         ),
       ),
