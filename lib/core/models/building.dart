@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:ecotown/ui/common/app_strings.dart';
 
-/// building grid = 5 x 7
+/// building grid = 5 x 10
 class Building {
   final String name;
   final String description;
@@ -49,7 +49,7 @@ class Building {
 }
 
 /// temporary building map
-List<Building?> tempBuildingsMap = List.generate(35, (index) {
+List<Building?> tempBuildingsMap = List.generate(50, (index) {
   if (index == 10) {
     return Building.biofuelPlant(index % 4, index ~/ 4);
   }

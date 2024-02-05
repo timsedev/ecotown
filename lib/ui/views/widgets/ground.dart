@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// 100 x 150 grid
+/// 5 x 10 grid
 /// index 0 - 139: grass, able to build buildings on
 /// index 140 - 149: grass ground, not able to build buildings on
 class Ground extends StatelessWidget {
@@ -12,11 +12,11 @@ class Ground extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.all(10),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 10,
+        crossAxisCount: 5,
       ),
-      children: List.generate(150, (index) {
+      children: List.generate(50, (index) {
         String? imagePath;
-        if (index < 140) {
+        if (index < 45) {
           return Container(
             decoration: BoxDecoration(
               color: Colors.green[200],

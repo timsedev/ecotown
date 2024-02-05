@@ -23,7 +23,7 @@ class _BackgroundState extends State<Background> with TickerProviderStateMixin {
           child: Container(
             margin:
                 const EdgeInsets.only(top: 30, left: 30, right: 30, bottom: 50),
-            height: 550,
+            height: 730,
             width: 400,
             // add shadow bellow
             decoration: BoxDecoration(
