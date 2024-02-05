@@ -19,7 +19,7 @@ class _BackgroundState extends State<Background> with TickerProviderStateMixin {
         behaviour: SpaceBehaviour(),
         vsync: this,
         child: Align(
-          alignment: Alignment.bottomCenter,
+          alignment: Alignment.center,
           child: Container(
             margin:
                 const EdgeInsets.only(top: 30, left: 30, right: 30, bottom: 50),
