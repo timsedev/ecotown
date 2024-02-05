@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:ecotown/core/models/building.dart';
+import 'package:ecotown/ui/views/widgets/floating_action_building.dart';
 import 'package:ecotown/ui/views/widgets/ground.dart';
 import 'package:ecotown/ui/views/widgets/background.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,22 @@ class HomeView extends StackedView<HomeViewModel> {
             child: Background(child: _buildMap(context, viewModel)),
           ),
           // controller
+        ],
+      ),
+      floatingActionButton: CustomFloatingActionButton(
+        children: [
+          SingleActionButton(
+            onPressed: () {},
+            icon: const Icon(Icons.format_size),
+          ),
+          SingleActionButton(
+            onPressed: () {},
+            icon: const Icon(Icons.insert_photo),
+          ),
+          SingleActionButton(
+            onPressed: () {},
+            icon: const Icon(Icons.videocam),
+          ),
         ],
       ),
     );
