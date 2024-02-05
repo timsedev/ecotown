@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:ecotown/core/models/building.dart';
-import 'package:ecotown/ui/views/widgets/floating_action_building.dart';
+import 'package:ecotown/ui/views/widgets/custom_floating_action_button.dart';
 import 'package:ecotown/ui/views/widgets/ground.dart';
 import 'package:ecotown/ui/views/widgets/background.dart';
 import 'package:flutter/material.dart';
@@ -28,22 +28,7 @@ class HomeView extends StackedView<HomeViewModel> {
           // controller
         ],
       ),
-      floatingActionButton: CustomFloatingActionButton(
-        children: [
-          SingleActionButton(
-            onPressed: () {},
-            icon: const Icon(Icons.format_size),
-          ),
-          SingleActionButton(
-            onPressed: () {},
-            icon: const Icon(Icons.insert_photo),
-          ),
-          SingleActionButton(
-            onPressed: () {},
-            icon: const Icon(Icons.videocam),
-          ),
-        ],
-      ),
+      floatingActionButton: _buildFloatingActionButton(context, viewModel),
     );
   }
 
@@ -128,6 +113,17 @@ class HomeView extends StackedView<HomeViewModel> {
             fit: BoxFit.fill,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildFloatingActionButton(
+      BuildContext context, HomeViewModel viewModel) {
+    return FloatingActionButton(
+      onPressed: viewModel.openBuildBuildingDialog,
+      child: const Icon(
+        Icons.close,
+        color: Colors.cyan,
       ),
     );
   }

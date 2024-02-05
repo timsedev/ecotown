@@ -5,6 +5,7 @@ import 'package:ecotown/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:ecotown/ui/dialogs/menu/menu_dialog.dart';
+import 'package:ecotown/ui/dialogs/build/build_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -26,6 +27,7 @@ import 'package:ecotown/ui/dialogs/menu/menu_dialog.dart';
   dialogs: [
     StackedDialog(classType: InfoAlertDialog),
     StackedDialog(classType: MenuDialog),
+    StackedDialog(classType: BuildDialog),
 // @stacked-dialog
   ],
 )

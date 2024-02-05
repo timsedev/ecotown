@@ -56,8 +56,8 @@ class HomeViewModel extends BaseViewModel {
       birdX = -1;
     }
 
-    if (birdY > 1) {
-      birdY = 1;
+    if (birdY > 0.75) {
+      birdY = 0.75;
     }
 
     if (birdY < -1) {
@@ -76,6 +76,13 @@ class HomeViewModel extends BaseViewModel {
         'description': building.description,
         'image-path': building.image,
       },
+    );
+  }
+
+  void openBuildBuildingDialog() {
+    _dialogService.showCustomDialog(
+      variant: DialogType.build,
+      barrierDismissible: true,
     );
   }
 }

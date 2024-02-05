@@ -150,11 +150,11 @@ class SingleActionButton extends StatelessWidget {
   const SingleActionButton({
     super.key,
     this.onPressed,
-    required this.icon,
+    required this.child,
   });
 
   final VoidCallback? onPressed;
-  final Widget icon;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +166,7 @@ class SingleActionButton extends StatelessWidget {
       elevation: 4,
       child: IconButton(
         onPressed: onPressed,
-        icon: icon,
+        icon: child,
         color: theme.colorScheme.onSecondary,
       ),
     );
