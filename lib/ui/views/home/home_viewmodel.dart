@@ -5,7 +5,6 @@ import 'dart:math';
 import 'package:ecotown/app/app.dialogs.dart';
 import 'package:ecotown/app/app.locator.dart';
 import 'package:ecotown/core/models/building.dart';
-import 'package:ecotown/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -40,7 +39,7 @@ class HomeViewModel extends BaseViewModel {
         birdY -= 0.05;
       }
 
-      rebuildUi();
+      checkBoundaries();
     });
   }
 
@@ -66,5 +65,17 @@ class HomeViewModel extends BaseViewModel {
     }
 
     rebuildUi();
+  }
+
+  void openBuildingDialog(Building building) {
+    _dialogService.showCustomDialog(
+      variant: DialogType.menu,
+      barrierDismissible: true,
+      data: {
+        'name': building.name,
+        'description': building.description,
+        'image-path': building.image,
+      },
+    );
   }
 }
