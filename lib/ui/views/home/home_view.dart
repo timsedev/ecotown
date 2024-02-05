@@ -78,11 +78,11 @@ class HomeView extends StackedView<HomeViewModel> {
         crossAxisCount: 5,
       ),
       itemBuilder: (context, index) {
-        final building = viewModel.buildings![index];
+        final building = viewModel.buildingsMap![index];
         if (building == null) return Container();
         return _buildSingleBuilding(building);
       },
-      itemCount: viewModel.buildings!.length,
+      itemCount: viewModel.buildingsMap!.length,
     );
   }
 

@@ -17,10 +17,10 @@ class HomeViewModel extends BaseViewModel {
 
   Timer? timer;
 
-  List<Building?>? buildings;
+  List<Building?>? buildingsMap;
 
   HomeViewModel() {
-    buildings = buildingsMap;
+    buildingsMap = tempBuildingsMap;
   }
 
   // hit A will open menu
@@ -31,6 +31,15 @@ class HomeViewModel extends BaseViewModel {
     // check player location
     // go through buildingsMap to check
     // if player is at biofuel plant
+    // buildingsMap!.firstWhere((building) {
+    //   if (building != null) {
+    //     if (building.x == birdX.toInt() && building.y == birdY.toInt()) {
+    //       openMenuDialog(building);
+    //       return true;
+    //     }
+    //   }
+    //   return false;
+    // });
 
     // open menu dialog
     _dialogService.showCustomDialog(

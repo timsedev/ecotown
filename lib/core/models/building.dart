@@ -49,7 +49,7 @@ class Building {
 }
 
 /// temporary building map
-List<Building?> buildingsMap = List.generate(35, (index) {
+List<Building?> tempBuildingsMap = List.generate(35, (index) {
   if (index == 10) {
     return Building.biofuelPlant(index % 4, index ~/ 4);
   }
